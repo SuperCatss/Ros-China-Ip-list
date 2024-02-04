@@ -12,16 +12,16 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # 使用仓库的默认访问令牌
 
     - name: Run shell script
       run: bash build.sh  # 将 `your_script.sh` 替换为你的.sh文件的路径
 
-    - name: Commit changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Add generated file"
-        git push
+    - name: upload to release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: latest
+        files: |
+          ./CN.rsc
+          ./china.txt
