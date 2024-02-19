@@ -10,7 +10,7 @@ header="/log info \"Loading CN ipv4 address list\"\n/ip firewall address-list re
 echo -e $header > $output_file
 
 # 使用curl下载文件并保存为输入文件
-curl -JLO https://github.com/gaoyifan/china-operator-ip/blob/ip-lists/china.txt
+curl  -o china.txt -JL  https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt
 # 逐行读取输入文件
 while IFS= read -r line
 do
